@@ -232,4 +232,63 @@ public class UserDao {
         }
         return res;
     }
+
+    public List<User> queryFollowListByUserId(String userId){
+        List<User> followUsers = new ArrayList<User>();
+        PreparedStatement preStm = null;
+        Connection conn = null;
+        String sql = "select * from user where uid = ?";
+        List<String> followsId = queryFollowIdByUserId(userId);
+        ResultSet resultSet = null;
+        if(followsId == null || followsId.size() == 0) return followUsers;
+        try {
+            conn = JDBCUtil.getInstance().getConnection();
+            preStm = conn.prepareStatement(sql);
+            conn.setAutoCommit(false);
+            for(String uid : followsId){
+                preStm.setString(1, uid);
+                resultSet = preStm.executeQuery();
+                while (resultSet.next()){
+                    User user = new User(resultSet.getString(INDEX_UID), resultSet.getString(INDEX_UNAME),
+                            resultSet.getString(INDEX_UEMAIL), resultSet.getString(INDEX_UPHONE),
+                            resultSet.getString(INDEX_UPASSWORD), resultSet.getInt(INDEX_UMESSAGECOUNT),
+                            resultSet.getInt(INDEX_UFANSCOUNT), resultSet.getInt(INDEX_UFOLLOWSCOUNT));
+                    user.setNickName(resultSet.getString(INDEX_UNICK_NAME));
+                    user.setReadedCount(resultSet.getLong(INDEX_UREADEDCOUNT));
+                    followUsers.add(user);
+                }
+
+            }
+
+            conn.commit();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(conn != null) JDBCUtil.getInstance().releaseConn();
+        }
+        return followUsers;
+    }
+
+    public List<String> queryFollowIdByUserId(String userId){
+        List<String> follows = new ArrayList<String>();
+        String sql = "select follow_id from follow where user_id = ?";
+        PreparedStatement preStm = null;
+        Connection conn = JDBCUtil.getInstance().getConnection();
+        ResultSet resultSet = null;
+        try {
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, userId);
+            resultSet = preStm.executeQuery();
+            while (resultSet.next()){
+                follows.add(resultSet.getString(1));
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(conn != null) JDBCUtil.getInstance().releaseConn();
+        }
+        return follows;
+    }
 }

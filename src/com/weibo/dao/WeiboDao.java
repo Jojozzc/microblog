@@ -1,8 +1,10 @@
 package com.weibo.dao;
 
+import com.weibo.model.User;
 import com.weibo.model.Weibo;
 import com.weibo.model.WeiboLogger;
 import com.weibo.myUtil.JDBCUtil;
+import com.weibo.myUtil.TimeUtil;
 
 import javax.sql.rowset.JdbcRowSet;
 import java.sql.Connection;
@@ -24,8 +26,7 @@ public class WeiboDao {
     private static final int INDEX_MRESPOST_COUNT = 9;
     private static final int INDEX_MCREATE_TIME = 10;
 
-
-    public void addWeibo(Weibo weibo){
+    public synchronized void addWeibo(Weibo weibo){
         Connection conn = JDBCUtil.getInstance().getConnection();
         String sql = "INSERT INTO message(mcontent, user_id, mreadnum, mtype, mto, mcreate_time) VALUES(?,?,?,?,?,?)";
         PreparedStatement preStm = null;
@@ -139,6 +140,41 @@ public class WeiboDao {
         return resList;
     }
 
+    public List<Weibo> queryByUserIdOrderByDateRange(String userId, int start, int end, boolean desc){
+        if(start <= 0 || start > end) return null;
+        String sql = desc?"select * from message where user_id = ? order by mcreate_time desc limit ?,?"
+                : "select * from message where user_id = ? order by mcreate_time limit ?,?";
+        List<Weibo> res = new ArrayList<Weibo>(end - start + 1);
+        PreparedStatement prestm = null;
+        Connection conn = JDBCUtil.getInstance().getConnection();
+        try {
+            prestm = conn.prepareStatement(sql);
+            prestm.setString(1, userId);
+            prestm.setInt(2, start);
+            prestm.setInt(3, end - start + 1);
+            ResultSet resultSet =  prestm.executeQuery();
+            while (resultSet.next()){
+                Weibo weibo = new Weibo(resultSet.getString(INDEX_MCONTENT), resultSet.getString(INDEX_USER_ID),
+                        resultSet.getString(INDEX_MTYPE), resultSet.getInt(INDEX_MTO));
+                weibo.setCommentCount(resultSet.getInt(INDEX_MCOMMENT_COUNT));
+                weibo.setReadnum(resultSet.getInt(INDEX_MREADNUM));
+                weibo.setId(resultSet.getInt(INDEX_ID));
+                weibo.setRepostCount(resultSet.getInt(INDEX_MRESPOST_COUNT));
+                weibo.setUpvoteCount(resultSet.getInt(INDEX_MUPVOTE_COUNT));
+                weibo.setCreateTime(resultSet.getString(INDEX_MCREATE_TIME));
+                res.add(weibo);
+            }
+        }catch (Exception e){
+            System.out.println("queryByUserIdOrderByDateRange");
+            e.printStackTrace();
+
+        }finally {
+            if(conn != null) JDBCUtil.getInstance().releaseConn();
+        }
+        return res;
+
+    }
+
     public List<Weibo> queryByUserIdOrderByDate(String userId, int top, boolean desc){
         String sql = desc?"select * from message where user_id = ? order by mcreate_time desc limit ?"
                 : "select * from message where user_id = ? order by mcreate_time limit ?";
@@ -169,5 +205,39 @@ public class WeiboDao {
             if(conn != null) JDBCUtil.getInstance().releaseConn();
         }
         return res;
+    }
+
+    public void autoAddWeiboBash(String uid, int num, String baseContent){
+        UserDao dao = new UserDao();
+
+        User user = dao.queryById(uid);
+        if(user != null){
+            String sql = "INSERT INTO message(mcontent, user_id, mreadnum, mtype, mto, mcreate_time) VALUES(?,?,?,?,?,?)";
+            PreparedStatement preStm = null;
+            Connection conn = null;
+            try {
+                conn = JDBCUtil.getInstance().getConnection();
+                preStm = conn.prepareStatement(sql);
+                conn.setAutoCommit(false);
+                for(int i = 1; i <= num; i++){
+                    preStm.setString(1, baseContent + i);
+                    preStm.setString(2, uid);
+                    preStm.setInt(3, 0);
+                    preStm.setString(4, "crt");
+                    preStm.setInt(5, -1);
+                    preStm.setString(6, TimeUtil.getInstance().getNowDateAndTime());
+                    preStm.addBatch();
+                    if(i % 100 == 0){
+                        preStm.executeBatch();
+                    }
+                    preStm.executeBatch();
+                    conn.commit();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                if(conn != null) JDBCUtil.getInstance().releaseConn();
+            }
+        }
     }
 }

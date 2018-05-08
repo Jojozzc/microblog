@@ -88,4 +88,9 @@ public class HotWeiboFinderDao {
     }
 
 
+    public void queryHotWeiboByRange(){
+
+    }
+
+
 }

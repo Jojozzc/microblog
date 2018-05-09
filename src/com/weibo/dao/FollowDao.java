@@ -64,12 +64,16 @@ public class FollowDao {
         if(follow == null) throw new RuntimeException("follow " + follow_id + "no exist");
         else {
             if(!queryIsFollowing(userId, follow_id)){
+                userDao.increaseFollowOne(userId);
+                userDao.increaseFansOne(follow_id);
                 String sql = "insert into follow(user_id, follow_id) values(?,?)";
                 PreparedStatement preStm = null;
                 Connection conn = null;
                 try {
                     conn = JDBCUtil.getInstance().getConnection();
                     preStm = conn.prepareStatement(sql);
+                    preStm.setString(1,userId);
+                    preStm.setString(2,follow_id);
                     preStm.execute();
                 }catch (Exception e){
                     e.printStackTrace();

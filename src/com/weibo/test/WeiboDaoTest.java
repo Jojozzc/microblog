@@ -30,7 +30,7 @@ public class WeiboDaoTest {
                 System.out.println(i + 1 + list.get(i).toString());
         }
     }
-    @Test
+//    @Test
     public void writeUser(){
         String starts = "韩雪、陈赫、陈坤、杜淳、冯绍峰、" +
                 "韩庚、胡歌、何炅、黄渤、黄晓明、贾乃亮、李晨、李易峰、鹿晗、井柏然、刘烨、陆毅、孙红雷、王宝强、汪峰、" +

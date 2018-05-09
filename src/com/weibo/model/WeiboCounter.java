@@ -32,6 +32,8 @@ public class WeiboCounter extends Observer{
     @Override
     public void update(Observable observable, FollowEvent event) {
         super.update(observable, event);
-
+        User user = event.getUser();
+        User followUser = event.getFollow();
+        UserDao userDao = new UserDao();
     }
 }

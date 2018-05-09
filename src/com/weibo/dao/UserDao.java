@@ -290,4 +290,36 @@ public class UserDao {
         }
         return follows;
     }
+
+    public void increaseFollowOne(String userId){
+        String sql = "UPDATE user SET ufollowscount = ufollowscount + 1 WHERE uid = ?";
+        PreparedStatement preStm = null;
+        Connection conn = null;
+        try {
+            conn = JDBCUtil.getInstance().getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, userId);
+            preStm.execute();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(conn != null) JDBCUtil.getInstance().releaseConn();
+        }
+    }
+
+    public void increaseFansOne(String followId){
+        String sql = "UPDATE user SET ufanscount = ufanscount + 1 WHERE uid = ?";
+        PreparedStatement preStm = null;
+        Connection conn = null;
+        try {
+            conn = JDBCUtil.getInstance().getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, followId);
+            preStm.execute();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(conn != null) JDBCUtil.getInstance().releaseConn();
+        }
+    }
 }

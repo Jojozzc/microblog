@@ -4,6 +4,7 @@ import com.weibo.dao.CounterDao;
 import com.weibo.dao.UserDao;
 import com.weibo.dao.WeiboDao;
 import com.weibo.event.BaseEvent;
+import com.weibo.event.FollowEvent;
 import com.weibo.event.WeiboCreatedEvent;
 import com.weibo.event.WeiboReadEvent;
 import com.weibo.myUtil.Observable;
@@ -25,8 +26,9 @@ public class WeiboCounter extends Observer{
         userDao.updateUserReadedCountIncreaseOne(event.getWeibo().getUserId());
     }
 
+    @Override
+    public void update(Observable observable, FollowEvent event) {
+        super.update(observable, event);
 
-
-
-
+    }
 }

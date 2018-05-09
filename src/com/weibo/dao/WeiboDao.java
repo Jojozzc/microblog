@@ -141,7 +141,7 @@ public class WeiboDao {
     }
 
     public List<Weibo> queryByUserIdOrderByDateRange(String userId, int start, int end, boolean desc){
-        if(start <= 0 || start > end) return null;
+        if(start < 0 || start > end) return null;
         String sql = desc?"select * from message where user_id = ? order by mcreate_time desc limit ?,?"
                 : "select * from message where user_id = ? order by mcreate_time limit ?,?";
         List<Weibo> res = new ArrayList<Weibo>(end - start + 1);

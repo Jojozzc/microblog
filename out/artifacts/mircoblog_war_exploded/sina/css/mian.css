@@ -104,9 +104,8 @@ li {
 }
 
 .remen {
-	margin-top: 30px;
+	margin-top: 20px;
 	padding-top: 10px;
-	border: 1px solid red;
 	border-radius: 4px;
 	
 	background-color: white;
@@ -114,7 +113,6 @@ li {
 .remen-inner {
 	margin: auto;
 	padding: 10px 10px 6px 60px;
-	border: 1px solid red;
 	
 	width: 96%;
 	
@@ -215,5 +213,67 @@ li {
 .dian {
 	background-image: url(../img/main_images/点赞.png);
 	
+}
+.ye {
+	margin-top: 10px;
+	
+}
+.ye input {
+	width: 26px;
+	height: 26px;
+	
+	text-align: center;
+	
+}
+#faSuccess {
+	visibility: hidden;
+	
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	
+	animation-name: mo;
+	animation-duration: 1s;
+	animation-timing-function: ease;
+}
+@keyframes zoom{
+	from {
+		visibility: visible;
+		transform: scale(.2);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+.guan-zhu {
+	margin-top: 20px;
+	
+	transition: .6s;
+}
+.guan-zhu li {
+	padding: 2px 2px 2px 20px;
+	
+	background-image: url(../img/Register-img/yonghu.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+.name {
+	display: block;
+	
+	margin-bottom: -2px;
+	
+	font-size: 16px;
+	font-weight: 700;
+	
+	transition: .5s;
+}
+.name:hover {
+	cursor: pointer;
+	
+	text-shadow: 0px 0px 4px rgba(0,0,0,.7);
+	
+}
+.my-id {
+	visibility: hidden;
 }
 

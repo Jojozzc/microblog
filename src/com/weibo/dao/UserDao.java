@@ -24,7 +24,6 @@ public class UserDao {
     private static final int INDEX_UREADEDCOUNT = 10;
 
     public void addUser(User user){
-
         Connection conn = JDBCUtil.getInstance().getConnection();
         String sql
                 =

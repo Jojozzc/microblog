@@ -1,0 +1,3 @@
+[submodule "sina"]
+	path = sina
+	url = https://github.com/XiaohuiSu/sina

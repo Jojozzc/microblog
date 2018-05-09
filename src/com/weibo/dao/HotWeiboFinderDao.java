@@ -92,5 +92,7 @@ public class HotWeiboFinderDao {
 
     }
 
+//    public List<Weibo> queryWeibosOrderbyTimeLimitByReadnum()
+
 
 }

@@ -104,11 +104,21 @@ li {
 }
 
 .remen {
+	position: relative;
+	
 	margin-top: 20px;
 	padding-top: 10px;
 	border-radius: 4px;
 	
 	background-color: white;
+}
+.remen img {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	
+	transition: 1s;
+	transition-timing-function: ease;
 }
 .remen-inner {
 	margin: auto;
@@ -120,12 +130,12 @@ li {
 	background-repeat: no-repeat;
 	background-position: 8px 9px;
 }
-.one {
-	background-image: url(../img/main_images/touxiang.png);
+/*.one {
+	background-image: url(../img/main_images/1.png);
 	
 }
 .two {
-	background-image: url(../img/main_images/touxiang2.png);
+	background-image: url(../img/main_images/2.png);
 	
 }
 .three {
@@ -159,7 +169,7 @@ li {
 .ten {
 	background-image: url(../img/main_images/10.png);
 	
-}
+}*/
 .remen-inner span:first-child {
 	display: block;
 	

@@ -55,8 +55,54 @@ public class FollowDao {
         return  res;
     }
 
-    public void addFollowByUid(String userId, String follow_id){
+    public synchronized void addFollowByUid(String userId, String follow_id){
         if(userId == null ||follow_id == null) throw new RuntimeException("userid不能为空");
+        UserDao userDao = new UserDao();
+        User user = userDao.queryById(userId);
+        User follow = userDao.queryById(follow_id);
+        if(user == null) throw new RuntimeException("user " + userId + "no exist");
+        if(follow == null) throw new RuntimeException("follow " + follow_id + "no exist");
+        else {
+            if(!queryIsFollowing(userId, follow_id)){
+                String sql = "insert into follow(user_id, follow_id) values(?,?)";
+                PreparedStatement preStm = null;
+                Connection conn = null;
+                try {
+                    conn = JDBCUtil.getInstance().getConnection();
+                    preStm = conn.prepareStatement(sql);
+                    preStm.execute();
+                }catch (Exception e){
+                    e.printStackTrace();
+                    System.out.println("插入好友异常");
+                }finally {
+                    if(conn != null){
+                        JDBCUtil.getInstance().releaseConn();
+                    }
+                }
+            }
+        }
+    }
 
+    public synchronized boolean queryIsFollowing(String userId, String followId){
+        String sql = "select count(*) from follow where user_id = ? and follow_id = ?";
+        PreparedStatement preStm = null;
+        Connection conn = null;
+        ResultSet resultSet = null;
+        int count = 0;
+        try {
+            conn = JDBCUtil.getInstance().getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1,userId);
+            preStm.setString(2,followId);
+            resultSet = preStm.executeQuery();
+            while (resultSet.next()){
+                count = resultSet.getInt(1);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(conn != null) JDBCUtil.getInstance().releaseConn();
+        }
+        return count == 1;
     }
 }

@@ -24,6 +24,9 @@ public class WeiboCounter extends Observer{
         counterDao.weiboReadNumAddOne(event.getWeibo().getId());
         UserDao userDao = new UserDao();
         userDao.updateUserReadedCountIncreaseOne(event.getWeibo().getUserId());
+        WeiboDao weiboDao = new WeiboDao();
+        weiboDao.increaseReadNumByWeiboId(event.getWeibo().getId());
+
     }
 
     @Override

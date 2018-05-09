@@ -48,7 +48,9 @@ public class HotWeiboFinder {
         HotWeiboFinderDao dao = new HotWeiboFinderDao();
         return dao.queryHotUserByReadNum(top);
     }
-
+    public List<Weibo> getRealHotFromDB(int top){
+        return getHotFromDB(top);
+    }
     private List<Weibo> getHotFromDB(int top){
         List<Weibo> res = new ArrayList<Weibo>();
         HotWeiboFinderDao dao = new HotWeiboFinderDao();

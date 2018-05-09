@@ -55,6 +55,17 @@ public class Weibo extends Observable {
     @SerializedName("createTime")
     private String createTime = "";
 
+    @SerializedName("isFrd")
+    private boolean isFrd = false;
+
+    public boolean isFrd() {
+        return isFrd;
+    }
+
+    public void setFrd(boolean frd) {
+        isFrd = frd;
+    }
+
     public Weibo(String content, String userId, String type, long to){
         this.content = content;
         this.userId = userId;

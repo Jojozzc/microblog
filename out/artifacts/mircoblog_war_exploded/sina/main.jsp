@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 
 <head>
@@ -112,9 +113,9 @@
 			<div class="remen">
 
 				<div class="remen-inner one">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">suxiaohui</span>
 
 					<p>wode</p>
 				</div>
@@ -123,13 +124,14 @@
 					<li><span class="ping">2</span></li>
 					<li><span class="dian">2</span></li>
 				</ul>
+				<img src=""  onclick="myJia(this)" />
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner two">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">BIngo</span>
 
 					<p>wode</p>
 				</div>
@@ -138,13 +140,16 @@
 					<li><span class="ping">1</span></li>
 					<li><span class="dian">1</span></li>
 				</ul>
+				<img src=""  onclick="myJia(this)" />
+
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner three">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">dd</span>
 
 					<p>wode</p>
 				</div>
@@ -153,13 +158,15 @@
 					<li><span class="ping">2</span></li>
 					<li><span class="dian">3</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner four">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">ff</span>
 
 					<p>wode</p>
 				</div>
@@ -168,13 +175,15 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner fiv">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">BIngo</span>
 
 					<p>wode</p>
 				</div>
@@ -183,13 +192,15 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner six">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">BIngo</span>
 
 					<p>wode</p>
 				</div>
@@ -198,13 +209,15 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner sev">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">ff</span>
 
 					<p>wode</p>
 				</div>
@@ -213,13 +226,15 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner eig">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
-					<span class="my-id"></span>
+					<span class="my-id">ee</span>
 					<p>wode</p>
 				</div>
 				<ul>
@@ -227,11 +242,13 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner nin">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
 					<span class="my-id"></span>
 
@@ -242,11 +259,13 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<div class="remen">
 
 				<div class="remen-inner ten">
-					<span class="name">wpde </span>
+					<span class="name" onclick="my(this)">wpde </span>
 					<span class="time">wpde </span>
 					<span class="my-id"></span>
 
@@ -257,6 +276,8 @@
 					<li><span class="ping">评论</span></li>
 					<li><span class="dian">点赞</span></li>
 				</ul>
+				<!--<img src=""  onclick="myJia(this)" />-->
+
 			</div>
 			<p class="ye">第<input type="text" value="1" />页</p>
 		</div>
@@ -284,7 +305,5 @@
 </body>
 
 </html>
-
-
 
 

@@ -57,12 +57,15 @@ $(document).ready(function() {
 document.querySelector(".shou-ye").onclick = function() {
 	Zhong.status = 1;
    		var t=new XMLHttpRequest,
-			obj;
+			obj,
+			a=[];
 		t.onreadystatechange=function() {
 			if(t.readyState==4&&t.status==200)
 			{
 				obj=JSON.parse(this.responseText);
-   				var id = document.querySelectorAll(".my-id")
+   				var id = document.querySelectorAll(".my-id");
+				var touxiang = document.querySelectorAll(".remen-inner");
+
 				
 				var name = document.querySelectorAll(".name");
 				var time = document.querySelectorAll(".time");
@@ -71,8 +74,18 @@ document.querySelector(".shou-ye").onclick = function() {
 				var ping = document.querySelectorAll(".ping");
 				var dian = document.querySelectorAll(".dian");
 				
+				for(var j = 0; j < obj.length; ++j) {
+   						a.push(obj[j].nickName);
+   					}
+				
 				for(var i=0; i<10; ++i) {
-   						id[i].innerHTML = obj[i].userid;
+					if(a.indexOf(a[i]) == i)
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						else 
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+					
+					
+   					id[i].innerHTML = obj[i].userid;
 					
 					name[i].innerHTML = obj[i].nickName;
 					time[i].innerHTML = obj[i].createTime;
@@ -97,13 +110,14 @@ document.querySelector(".shou-ye").onclick = function() {
 document.querySelector(".ye input").onchange = function() {
 			var c = document.querySelector('.ye input');
 	   		var t=new XMLHttpRequest,
-   				obj;
+   				obj,
+   				a=[];
    			t.onreadystatechange=function() {
    				if(t.readyState==4&&t.status==200)
    				{
    					obj=JSON.parse(this.responseText);
    					var id = document.querySelectorAll(".my-id")
-   					
+   					var touxiang = document.querySelectorAll(".remen-inner");
    					var name = document.querySelectorAll(".name");
    					var time = document.querySelectorAll(".time");
    					var content = document.querySelectorAll(".remen-inner p");
@@ -111,7 +125,18 @@ document.querySelector(".ye input").onchange = function() {
    					var ping = document.querySelectorAll(".ping");
    					var dian = document.querySelectorAll(".dian");
    					
+   					for(var j = 0; j < obj.length; ++j) {
+   						a.push(obj[j].nickName);
+   					}
+   					
+   					
    					for(var i=0; i<10; ++i) {
+   						
+   			if(a.indexOf(a[i]) == i)
+			touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+			else 
+			touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+   						
    						id[i].innerHTML = obj[i].userid;
    						
    						name[i].innerHTML = obj[i].nickName;
@@ -131,8 +156,12 @@ document.querySelector(".ye input").onchange = function() {
    				t.send("page="+c.value+"&ishot=true");
    				
    			}
-   			else {
+   			else if(Zhong.status === 0 && Zhong.name=='') {
    				t.send("page="+c.value+"&ishot=false");
+   				
+   			}
+   			else if(Zhong.status === 0 && Zhong.name != '') {
+   				t.send("page="+c.value+"&ishot=false"+"&name="+Zhong.name);
    				
    			}
 	
@@ -141,13 +170,18 @@ document.querySelector(".ye input").onchange = function() {
 
 
    window.onload = function() {
+   	
    		var t=new XMLHttpRequest,
-   				obj;
+   				obj,
+   				a=[];
    			t.onreadystatechange=function() {
    				if(t.readyState==4&&t.status==200)
    				{
-   					obj=JSON.parse(this.responseText);
    					
+
+   					obj=JSON.parse(this.responseText);
+// 					var zhu = document.querySelectorAll(".remen img");
+   					var touxiang = document.querySelectorAll(".remen-inner");
    					var id = document.querySelectorAll(".my-id")
    					var name = document.querySelectorAll(".name");
    					var time = document.querySelectorAll(".time");
@@ -156,7 +190,17 @@ document.querySelector(".ye input").onchange = function() {
    					var ping = document.querySelectorAll(".ping");
    					var dian = document.querySelectorAll(".dian");
    					
+   					for(var j = 0; j < obj.length; ++j) {
+   						a.push(obj[j].nickName);
+   					}
+   					
+   					
    					for(var i=0; i<10; ++i) {
+   					if(a.indexOf(a[i]) == i)
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						else 
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+   						
    						id[i].innerHTML = obj[i].userid;
    						name[i].innerHTML = obj[i].nickName;
    						time[i].innerHTML = obj[i].createTime;
@@ -164,6 +208,9 @@ document.querySelector(".ye input").onchange = function() {
    						zhuan[i].innerHTML = obj[i].repostCount;
    						ping[i].innerHTML = obj[i].commentCount;
    						dian[i].innerHTML = obj[i].upvoteCount;
+   						
+// 							if(obj[i].isFrd == 'true')
+// 						zhu[i].src = "img/main_images/加好友.png";
    						
    					}
    					
@@ -193,7 +240,7 @@ document.querySelector(".ye input").onchange = function() {
    				{
    					obj=JSON.parse(this.responseText);
 
-   				}
+   				}m
    			}
    			t.open("POST","http://172.17.164.36:8080/blog/Pub.do",true);
    			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -206,15 +253,18 @@ document.querySelector(".ye input").onchange = function() {
 };
 document.querySelector(".he2 a").onclick = function() {
 	
+	    Zhong.name = '';
 		Zhong.status = 0;
 		var t=new XMLHttpRequest,
-   				obj;
+   				obj,
+   				a=[];
    			t.onreadystatechange=function() {
    				if(t.readyState==4&&t.status==200)
    				{
    					obj=JSON.parse(this.responseText);
-   					var id = document.querySelectorAll(".my-id")
    					
+   					var touxiang = document.querySelectorAll(".remen-inner");
+   					var id = document.querySelectorAll(".my-id")
    					var name = document.querySelectorAll(".name");
    					var time = document.querySelectorAll(".time");
    					var content = document.querySelectorAll(".remen-inner p");
@@ -222,9 +272,17 @@ document.querySelector(".he2 a").onclick = function() {
    					var ping = document.querySelectorAll(".ping");
    					var dian = document.querySelectorAll(".dian");
    					
+   					for(var j = 0; j < obj.length; ++j) {
+   						a.push(obj[j].nickName);
+   					}
+   					
    					for(var i=0; i<10; ++i) {
-   						id[i].innerHTML = obj[i].userid;
+   						if(a.indexOf(a[i]) == i)
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						else 
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
    						
+   						id[i].innerHTML = obj[i].userid;
    						name[i].innerHTML = obj[i].nickName;
    						time[i].innerHTML = obj[i].createTime;
    						content[i].innerHTML = obj[i].content;
@@ -242,18 +300,23 @@ document.querySelector(".he2 a").onclick = function() {
 	
 };
 
-document.querySelector(".name").onclick = function(this) {
+function my(r) {
 			Zhong.status = 0;
-			alert(this.nextSibling.nextSibling.innerHTML);
+			
+			var id = r.parentNode.childNodes[5].innerHTML;
+			Zhong.name = id;
+
 		
 		var t=new XMLHttpRequest,
-   				obj;
+   				obj,
+   				a=[];
    			t.onreadystatechange=function() {
    				if(t.readyState==4&&t.status==200)
    				{
    					obj=JSON.parse(this.responseText);
-   					var id = document.querySelectorAll(".my-id")
+   					var touxiang = document.querySelectorAll(".remen-inner");
    					
+   					var id = document.querySelectorAll(".my-id")
    					var name = document.querySelectorAll(".name");
    					var time = document.querySelectorAll(".time");
    					var content = document.querySelectorAll(".remen-inner p");
@@ -261,9 +324,17 @@ document.querySelector(".name").onclick = function(this) {
    					var ping = document.querySelectorAll(".ping");
    					var dian = document.querySelectorAll(".dian");
    					
+   					for(var j = 0; j < obj.length; ++j) {
+   						a.push(obj[j].nickName);
+   					}
+   					
    					for(var i=0; i<10; ++i) {
-   						id[i].innerHTML = obj[i].userid;
+   						if(a.indexOf(a[i]) == i)
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						else 
+   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
    						
+   						id[i].innerHTML = obj[i].userid;
    						name[i].innerHTML = obj[i].nickName;
    						time[i].innerHTML = obj[i].createTime;
    						content[i].innerHTML = obj[i].content;
@@ -275,8 +346,31 @@ document.querySelector(".name").onclick = function(this) {
    					
    				}
    			}
-   			t.open("GET","http://172.17.164.36:8080/blog/View.do?page=1&ishot=false&name="+document.querySelector(".my-id").innerHTML,true);
-// 			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+   			t.open("GET","http://172.17.164.36:8080/blog/View.do?page=1&ishot=false&name="+id,true);
    			t.send();
 };
+//
+//function myJia(r) {
+//	if(r.src == "img/main_images/加好友.png" ) {
+//		
+//	r.style.transform = 'scale(0)';
+//	var m = r.parentNode.childNodes[1].childNodes[5].innerHTML;
+//	var t=new XMLHttpRequest,
+// 				obj;
+// 			t.onreadystatechange=function() {
+// 				if(t.readyState==4&&t.status==200)
+// 				{
+// 					
+// 				}
+// 			}
+// 			t.open("POST","http://172.17.164.36:8080/blog/AddFwl.do",true);
+// 			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+// 			t.send("flwid="+m);
+//	}
+//	else {
+//	r.style.transform = 'scale(0)';
+//	r.parentNode.style.opacity = ".3";
+//		
+//	}
+//}
 

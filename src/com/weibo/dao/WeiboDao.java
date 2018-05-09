@@ -26,6 +26,21 @@ public class WeiboDao {
     private static final int INDEX_MRESPOST_COUNT = 9;
     private static final int INDEX_MCREATE_TIME = 10;
 
+    public synchronized void increaseReadNumByWeiboId(long id){
+        String sql = "update message set mreadnum = mreadnum + 1 where id = ?";
+        Connection conn = null;
+        PreparedStatement preStm = null;
+        try {
+            conn = JDBCUtil.getInstance().getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setLong(1, id);
+            preStm.execute();
+        }catch (Exception e){
+
+        }finally {
+            if(conn != null)JDBCUtil.getInstance().releaseConn();
+        }
+    }
     public synchronized void addWeibo(Weibo weibo){
         Connection conn = JDBCUtil.getInstance().getConnection();
         String sql = "INSERT INTO message(mcontent, user_id, mreadnum, mtype, mto, mcreate_time) VALUES(?,?,?,?,?,?)";

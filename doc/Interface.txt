@@ -14,7 +14,7 @@
 	
 	5001    服务器错误
 	
-	6003    已经是好友
+	6001    已经是好友
 	
 	
 1 用户注册
@@ -22,8 +22,8 @@
 	方法：POST
 	参数：
 		参数名			 类型           说明              是否必要
-		register-name    varchar(20)	用户id	唯一id		YES
-		register-mingzi	 varchar(20)	用户名（昵称）      YES
+		register-name    varchar(20)    用户id	唯一id      YES
+		register-mingzi	 varchar(20)    用户名(昵称)        YES
 		register-pas     varchar(20)    密码                YES
 		
 	返回值(JSON)：
@@ -55,8 +55,8 @@
 	方法：POST
 	请求URL：http://xx.xx.xx.xx:8080/blog/AddFwl.do
 	参数：
-		参数名			 类型           说明            是否必要
-		userid           varchar(20)	用户id				NO
+		参数名			 类型           说明              是否必要
+		userid           varchar(20)	用户id              NO
 		followid         varchar(20)	要添加谁为关注      YES
 		register-pas     varchar(20)    密码                NO(如果没有传送用户id和密码，将会通过session验证)
 		

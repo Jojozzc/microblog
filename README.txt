@@ -1,9 +1,9 @@
 仿微博系统
 作者：
-	github.com/Jojozzc   后端
-	github.com/XiaohuiSu 前端
+	https://github.com/Jojozzc   后端
+	https://github.com/XiaohuiSu 前端
 
 Weibo-like System
 Author:
-	github.com/Jojozzc   backend
-	github.com/XiaohuiSu frontend
+	https://github.com/Jojozzc     backend
+	https://github.com/XiaohuiSu   frontend

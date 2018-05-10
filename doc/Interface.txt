@@ -1,0 +1,10 @@
+请求方式:
+	http://xx.xx.xx.xx:8080/blog/YY.do
+	在校园网内ip地址替换为http://172.17.164.36
+	YY.do后面会有?xx1=yy1&xx2=yy2等参数
+	
+1 用户注册
+	请求方式：http://172.17.164.36/blog/Reg.do
+	方法：POST
+	参数：
+		

@@ -51,6 +51,7 @@
 	方法：GET
 	请求URL：http://xx.xx.xx.xx:8080/blog/Fwl.do
 	
+	
 6 加关注
 	方法：POST
 	请求URL：http://xx.xx.xx.xx:8080/blog/AddFwl.do
@@ -64,4 +65,30 @@
 		字段		含义     
 		code		状态码(见第0条)
 		message     附加信息(可能为空)
-	
+7 删除微博
+	方法：POST
+	请求URL：http://xx.xx.xx.xx:8080/blog/Del.do
+    参数：
+        参数名        类型            说明                是否必要
+		userid        varchar(20)     用户id               NO
+		password       varchar(20)     密码                 NO
+	    weiboid       int(11)         微博id               YES
+	返回值(JSON)
+	    字段         含义
+		code         状态码(见第0条)
+		message      附加信息(可能为空)
+		
+8 回复微博
+    方法：POST
+	请求URL：http://xx.xx.xx.xx:8080/blog/Rep.do
+    参数：
+	    参数         类型         说明              是否必要
+		userid       varchar(20)  用户id               NO
+        password     varchar(20)  密码                 NO
+		weiboid      int(11)      微博id               YES
+    返回值(JSON)：
+        字段         含义
+        code         状态码
+        weibo        微博实体(见weibo)，如果成功		
+    
+        

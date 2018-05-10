@@ -57,7 +57,7 @@
 	参数：
 		参数名			 类型           说明            是否必要
 		userid           varchar(20)	用户id				NO
-		followid	     varchar(20)	要添加谁为关注      YES
+		followid         varchar(20)	要添加谁为关注      YES
 		register-pas     varchar(20)    密码                NO(如果没有传送用户id和密码，将会通过session验证)
 		
 	返回值(JSON)：

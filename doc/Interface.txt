@@ -65,7 +65,7 @@
 		字段		含义     
 		code		状态码(见第0条)
 		message     附加信息(可能为空)
-7 删除微博
+7 删除微博(后端接口尚未就绪)
 	方法：POST
 	请求URL：http://xx.xx.xx.xx:8080/blog/Del.do
     参数：
@@ -78,7 +78,7 @@
 		code         状态码(见第0条)
 		message      附加信息(可能为空)
 		
-8 回复微博
+8 回复微博(后端接口尚未就绪)
     方法：POST
 	请求URL：http://xx.xx.xx.xx:8080/blog/Rep.do
     参数：
@@ -89,6 +89,33 @@
     返回值(JSON)：
         字段         含义
         code         状态码
-        weibo        微博实体(见weibo)，如果成功		
+        weibo        微博实体(见weibo)，如果成功
+
+实体
+    1 user
+    userId   varchar(20) 
+    userName varchar(20) 
+    email    varchar(50) 
+    phone    varchar(15) 
+    password varchar(20) 
+    messageCount   int(11) 
+    fansCount      int(11) 
+    followsCount   int(11) 
+    nickName       varchar(15) 
+    readedCount    int(20)
+
+
+    2 weibo                    格式	                     备注
+    id                         int(11)  
+    content                    varchar	 
+    userid                     varchar(20) 
+    readnum                    int(11) 
+    type                       varchar(5) 
+    to                         int(11) 
+    commentCount               int(11) 
+    upvoteCount                int(11) 
+    repostCount                int(11) 
+    createTime                 varchar         	
+	isFrd                      true/false           该字段正在弃用中
     
         

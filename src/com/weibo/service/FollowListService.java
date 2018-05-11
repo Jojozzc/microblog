@@ -1,6 +1,7 @@
 package com.weibo.service;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.SerializedName;
 import com.weibo.dao.FollowDao;
 import com.weibo.model.Follow;
 import com.weibo.model.User;
@@ -43,5 +44,15 @@ public class FollowListService extends BaseService {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
         this.doGet(req, resp);
+    }
+
+    class ResponseBody{
+        @SerializedName("code")
+        private int code;
+        @SerializedName("message")
+        private String message = "";
+
+
+
     }
 }

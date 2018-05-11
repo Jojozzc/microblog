@@ -1,7 +1,11 @@
 package com.weibo.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+    @SerializedName("userId")
     private String id;
+    @SerializedName("")
     private String userName;
     private String email;
     private String phone;

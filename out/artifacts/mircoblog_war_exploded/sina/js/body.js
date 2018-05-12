@@ -134,6 +134,31 @@ $(document).ready(function() {
    		"background-color": "white"
    	});
    });
+
+function myLogin() {
+	var t=new XMLHttpRequest,
+	obj;
+t.onreadystatechange=function() {
+	if(t.readyState==4&&t.status==200)
+	{
+		obj=JSON.parse(this.responseText);
+		if(obj.code == 2001) {
+			var userId = obj.user.userId;
+			sessionStorage.setItem(userId,JSON.stringify(obj.user));
+			window.location.href = '/blog/sina/main.html';
+			
+		}
+		else {
+			alert("用户名或密码错误！");
+		}
+	
+		
+	}
+}
+	t.open("POST","/blog/Login.do",true);
+	t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	t.send("userId="+document.querySelector("#userID").value+"&password="+document.querySelector("#userPassWord").value);
+}
 	
 
 

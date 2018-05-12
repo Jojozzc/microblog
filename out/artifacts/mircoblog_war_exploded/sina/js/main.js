@@ -5,6 +5,8 @@ var Zhong = {
 	name: ""
 };
 
+document.querySelector(".he2 span").innerHTML = JSON.parse(sessionStorage.getItem(sessionStorage.key(0))).userName;
+
 $(document).ready(function() {
 	$(".sec").click(function() {
 		if(Zhong.ff === 1) {
@@ -25,7 +27,7 @@ $(document).ready(function() {
    					
    				}
    			}
-   			t.open("GET","http://172.17.164.36:8080/blog/Fwl.do",true);
+   			t.open("GET","/blog/Fwl.do",true);
    			t.send();
    			
    			Zhong.ff = 0;
@@ -37,6 +39,7 @@ $(document).ready(function() {
 			$("#xiaLa").css({"transform":"rotate(90deg)"});
 			Zhong.myDian = 0;
 			document.querySelector(".guan-zhu").style.visibility = "visible";
+			
 			
 		}
 		else 
@@ -80,9 +83,9 @@ document.querySelector(".shou-ye").onclick = function() {
 				
 				for(var i=0; i<10; ++i) {
 					if(a.indexOf(a[i]) == i)
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+i+".png)";
    						else 
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
 					
 					
    					id[i].innerHTML = obj[i].userid;
@@ -98,7 +101,7 @@ document.querySelector(".shou-ye").onclick = function() {
 				
 			}
 		}
-		t.open("POST","http://172.17.164.36:8080/blog/View.do",true);
+		t.open("POST","/blog/View.do",true);
 		t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		t.send("page=1"+"&ishot=true");
 	
@@ -133,9 +136,9 @@ document.querySelector(".ye input").onchange = function() {
    					for(var i=0; i<10; ++i) {
    						
    			if(a.indexOf(a[i]) == i)
-			touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+			touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+i+".png)";
 			else 
-			touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+			touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
    						
    						id[i].innerHTML = obj[i].userid;
    						
@@ -150,7 +153,7 @@ document.querySelector(".ye input").onchange = function() {
    					
    				}
    			}
-   			t.open("POST","http://172.17.164.36:8080/blog/View.do",true);
+   			t.open("POST","/blog/View.do",true);
    			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    			if(Zhong.status === 1) {
    				t.send("page="+c.value+"&ishot=true");
@@ -197,9 +200,9 @@ document.querySelector(".ye input").onchange = function() {
    					
    					for(var i=0; i<10; ++i) {
    					if(a.indexOf(a[i]) == i)
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+i+".png)";
    						else 
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
    						
    						id[i].innerHTML = obj[i].userid;
    						name[i].innerHTML = obj[i].nickName;
@@ -216,7 +219,7 @@ document.querySelector(".ye input").onchange = function() {
    					
    				}
    			}
-   			t.open("POST","http://172.17.164.36:8080/blog/View.do",true);
+   			t.open("POST","/blog/View.do",true);
    			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    			t.send("page=1"+"&ishot=true");
    }
@@ -242,7 +245,7 @@ document.querySelector(".ye input").onchange = function() {
 
    				}m
    			}
-   			t.open("POST","http://172.17.164.36:8080/blog/Pub.do",true);
+   			t.open("POST","/blog/Pub.do",true);
    			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    			t.send("content="+c.value);
    			
@@ -278,9 +281,9 @@ document.querySelector(".he2 a").onclick = function() {
    					
    					for(var i=0; i<10; ++i) {
    						if(a.indexOf(a[i]) == i)
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+i+".png)";
    						else 
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
    						
    						id[i].innerHTML = obj[i].userid;
    						name[i].innerHTML = obj[i].nickName;
@@ -294,7 +297,7 @@ document.querySelector(".he2 a").onclick = function() {
    					
    				}
    			}
-   			t.open("POST","http://172.17.164.36:8080/blog/View.do",true);
+   			t.open("POST","/blog/View.do",true);
    			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
    			t.send("page=1&ishot=false");
 	
@@ -330,9 +333,9 @@ function my(r) {
    					
    					for(var i=0; i<10; ++i) {
    						if(a.indexOf(a[i]) == i)
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+i+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+i+".png)";
    						else 
-   						touxiang[i].style.backgroundImage = "url(http://172.17.164.36:8080/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
+   						touxiang[i].style.backgroundImage = "url(/blog/sina/img/main_images/"+a.indexOf(a[i])+".png)";
    						
    						id[i].innerHTML = obj[i].userid;
    						name[i].innerHTML = obj[i].nickName;
@@ -346,7 +349,7 @@ function my(r) {
    					
    				}
    			}
-   			t.open("GET","http://172.17.164.36:8080/blog/View.do?page=1&ishot=false&name="+id,true);
+   			t.open("GET","/blog/View.do?page=1&ishot=false&name="+id,true);
    			t.send();
 };
 //
@@ -363,7 +366,7 @@ function my(r) {
 // 					
 // 				}
 // 			}
-// 			t.open("POST","http://172.17.164.36:8080/blog/AddFwl.do",true);
+// 			t.open("POST","/blog/AddFwl.do",true);
 // 			t.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 // 			t.send("flwid="+m);
 //	}

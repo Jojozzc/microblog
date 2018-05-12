@@ -110,7 +110,7 @@
    .Text span{
    	color: #808080;
    	cursor: pointer;
-   	float: right;
+   	/* float: right; */
    	display: inline-block;
    	margin-top: 2px;
    	font-size: 12px;
@@ -135,8 +135,7 @@
    	color: #ff8140;
    	cursor: pointer;
    }
-   .biaodankuang2{
-   }
+ 
    .kuang{
    	background-color: white;
    	padding: 6px;
@@ -254,6 +253,6 @@
 }
 .chakan a {
    	color: rgb(110,110,110);
-	s
+	
 }
   

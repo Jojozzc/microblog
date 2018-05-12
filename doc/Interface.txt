@@ -1,94 +1,102 @@
 请求方式:
-	http://xx.xx.xx.xx:8080/blog/YY.do
-	YY.do后面会有?xx1=yy1&xx2=yy2等参数
-	在校园网内ip地址替换为172.17.164.36
-	
+    http://xx.xx.xx.xx:8080/blog/YY.do
+    YY.do后面会有?xx1=yy1&xx2=yy2等参数
+    在校园网内ip地址替换为172.17.164.36
+    
 0 状态码code（服务器端返回）
 
-	状态码	含义
-	2001    成功
-	
-	
-	4001    账号或密码错误
-	4002    访问缺少必要参数
-	
-	5001    服务器错误
-	
-	6001    已经是好友
-	6002    不存在此微博
-	
-	
+    状态码 含义
+    2001    成功
+    
+    
+    4001    账号或密码错误
+    4002    访问缺少必要参数
+    
+    5001    服务器错误
+    
+    6001    已经是好友
+    6002    不存在此微博
+    
+    
 1 用户注册
-	请求URL：http://xx.xx.xx.xx:8080/blog/Reg.do
-	方法：POST
-	参数：
-		参数名			 类型           说明              是否必要
-		register-name    varchar(20)    用户id	唯一id      YES
-		register-mingzi	 varchar(20)    用户名(昵称)        YES
-		register-pas     varchar(20)    密码                YES
-		
-	返回值(JSON)：
-		字段		含义     
-		code		状态码(见第0条)
-		user	    用户实体(见user)
-		
-		
-		
-		
+    请求URL：http://xx.xx.xx.xx:8080/blog/Reg.do
+    方法：POST
+    参数：
+        参数名          类型           说明              是否必要
+        register-name    varchar(20)    用户id    唯一id      YES
+        register-mingzi  varchar(20)    用户名(昵称)        YES
+        register-pas     varchar(20)    密码                YES
+    返回值(JSON)：
+        字段      含义     
+        code        状态码(见第0条)
+        user        用户实体(见user)
+        
+        
+        
+        
 2 用户登录
-	方法：POST
-	请求URL：http://xx.xx.xx.xx:8080/blog/Login.do
-	请求参数：
-	userId 
-	
+    方法：POST
+    请求URL：http://xx.xx.xx.xx:8080/blog/Login.do
+    参数：
+        参数名          类型           说明              是否必要
+        userId           varchar(20)    用户id    唯一id      YES
+        password         varchar(20)    密码                YES
+        
+    返回值(JSON)：
+        字段      含义     
+        code        状态码(见第0条)
+        user        用户实体(见user)
+    
 
 3 发送微博
-	方法：POST
-	请求URL：http://xx.xx.xx.xx:8080/blog/Pub.do
-	
+    方法：POST
+    请求URL：http://xx.xx.xx.xx:8080/blog/Pub.do
+    
 4 查看微博
-	方法：GET
-	请求URL：http://xx.xx.xx.xx:8080/blog/View.do
-	
+    方法：GET
+    请求URL：http://xx.xx.xx.xx:8080/blog/View.do
+    参数:
+    
+    
 5 获取关注(目前视为好友)列表
-	方法：GET
-	请求URL：http://xx.xx.xx.xx:8080/blog/Fwl.do
-	
-	
+    方法：GET
+    请求URL：http://xx.xx.xx.xx:8080/blog/Fwl.do
+    
+    
 6 加关注
-	方法：POST
-	请求URL：http://xx.xx.xx.xx:8080/blog/AddFwl.do
-	参数：
-		参数名             类型           说明             是否必要
-		userId           varchar(20)	 用户id               NO
-		password         varchar(20)     密码                 NO(如果没有传送用户id和密码，将会通过session验证)
-		followId         varchar(20)	 要添加谁为关注       YES
-		
-	返回值(JSON)：
-		字段		含义     
-		code		状态码(见第0条)
-		message     附加信息(可能为空)
+    方法：POST
+    请求URL：http://xx.xx.xx.xx:8080/blog/AddFwl.do
+    参数：
+        参数名             类型           说明             是否必要
+        userId           varchar(20)     用户id               NO
+        password         varchar(20)     密码                 NO(如果没有传送用户id和密码，将会通过session验证)
+        followId         varchar(20)     要添加谁为关注       YES
+        
+    返回值(JSON)：
+        字段      含义     
+        code        状态码(见第0条)
+        message     附加信息(可能为空)
 7 删除微博(后端接口就绪)
-	方法：POST
-	请求URL：http://xx.xx.xx.xx:8080/blog/Del.do
+    方法：POST
+    请求URL：http://xx.xx.xx.xx:8080/blog/Del.do
     参数：
         参数名        类型            说明                是否必要
-		userId        varchar(20)     用户id               NO
-		password       varchar(20)     密码                 NO
-	    weiboId       int(11)         微博id               YES
-	返回值(JSON)
-	    字段         含义
-		code         状态码(见第0条)
-		message      附加信息(可能为空)
-		
+        userId        varchar(20)     用户id               NO
+        password       varchar(20)     密码                 NO
+        weiboId       int(11)         微博id               YES
+    返回值(JSON)
+        字段         含义
+        code         状态码(见第0条)
+        message      附加信息(可能为空)
+        
 8 回复微博(后端接口尚未就绪)
     方法：POST
-	请求URL：http://xx.xx.xx.xx:8080/blog/Rep.do
+    请求URL：http://xx.xx.xx.xx:8080/blog/Rep.do
     参数：
-	    参数         类型         说明              是否必要
-		userId       varchar(20)  用户id               NO
+        参数         类型         说明              是否必要
+        userId       varchar(20)  用户id               NO
         password     varchar(20)  密码                 NO
-		weiboId      int(11)      微博id               YES
+        weiboId      int(11)      微博id               YES
     返回值(JSON)：
         字段         含义
         code         状态码
@@ -108,9 +116,9 @@
     readedCount    int(20)
 
 
-    2 weibo                    格式	                     备注
-    id                         int(11)  
-    content                    varchar	 
+    2 weibo                    格式                        备注
+    id                         int(11)         
+    content                    varchar   
     userid                     varchar(20) 
     readnum                    int(11) 
     type                       varchar(5) 
@@ -118,7 +126,7 @@
     commentCount               int(11) 
     upvoteCount                int(11) 
     repostCount                int(11) 
-    createTime                 varchar         	
-	isFrd                      true/false           该字段正在弃用中
+    createTime                 varchar          
+    isFrd                      true/false           该字段正在弃用中
     
         

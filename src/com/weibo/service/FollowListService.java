@@ -2,6 +2,7 @@ package com.weibo.service;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.weibo.SessionConfig;
 import com.weibo.dao.FollowDao;
 import com.weibo.model.Follow;
 import com.weibo.model.User;
@@ -20,11 +21,11 @@ public class FollowListService extends BaseService {
         super.doGet(req, resp);
         System.out.println("好友列表请求");
         HttpSession session = req.getSession();
-        String uid = session.getAttribute("user_id").toString();
-        String password = session.getAttribute("password").toString();
-        System.out.println("session内容:" + session.getAttribute("user"));
-        System.out.println("session内容:" + uid);
-        System.out.println("session内容:" + password);
+        String uid = session.getAttribute(SessionConfig.USERID).toString();
+        String password = session.getAttribute(SessionConfig.PASSWORD).toString();
+        System.out.println("session内容:uname" + session.getAttribute(SessionConfig.USER_NAME));
+        System.out.println("session内容:uid" + uid);
+        System.out.println("session内容password:" + password);
         FollowDao dao = new FollowDao();
         List<User> users = dao.queryfollowByUserId(uid);
         if(users != null && users.size() != 0){

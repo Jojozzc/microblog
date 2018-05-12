@@ -5,15 +5,25 @@ import com.google.gson.annotations.SerializedName;
 public class User {
     @SerializedName("userId")
     private String id;
-    @SerializedName("")
+    @SerializedName("userName")
     private String userName;
+    @SerializedName("email")
     private String email;
+    @SerializedName("phone")
     private String phone;
+
     private String password;
+
+
+    @SerializedName("messageCount")
     private int messageCount;
+    @SerializedName("fansCount")
     private int fansCount;
+    @SerializedName("followsCount")
     private int followsCount;
+    @SerializedName("nickName")
     private String nickName = "";
+    @SerializedName("readedCount")
     private long readedCount = 0;
     public User(String id, String userName, String email, String phone, String password,
                 int messageCount, int fansCount, int followsCount){

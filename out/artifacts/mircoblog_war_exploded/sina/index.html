@@ -174,7 +174,7 @@
 		    						<li id="anquan">安全登录</li>
 		    					</ul>
 		    				</div>
-		    				<form class="biaodankuang2" action="http://172.17.164.36:8080/blog/Login.do" method="post">
+		    				<div class="biaodankuang2">
 		    					<div class="yonghuming">
 		    						<img src="img/Register-img/yonghu.png" alt="" />
 		    						<input type="text" name="userID" id="userID" placeholder="手机号/邮箱"/>
@@ -190,11 +190,11 @@
 		    						<span>忘记密码</span>
 		    					</div>
 		    					<div class="Buton">
-		    					     <input id="ceshi" type="submit" class="btn  btn-outline-warning btn-block hh " value="登录" >
+		    					     <input id="ceshi" onclick="myLogin()" type="submit" class="btn  btn-outline-warning btn-block hh " value="登录" >
 		    					</div>
 		    					<div class="tishi"><span>还没有微博？</span><a href="#" onclick="register()">立即注册！</a></div>
 		    			
-		    				</form>
+		    				</div>
 		    				
 		    				<div class="erwei">
 		    					<a href="#">
@@ -227,13 +227,13 @@
 	    			<li>个人注册</li><li>官方注册</li>
 	    		</ul>
 	    		
-	    		<form class="register-form" action="http://172.17.164.36:8080/blog/Reg.do" method="post" >
+	    		<div class="register-form">
 	    			<input id="register-name" name="register-name" type="text" placeholder="手机号/邮箱" required="required">
 						<input id="register-mingzi" name="register-mingzi" type="text" placeholder="用户名" required="required">
 						
 	    			<input id="register-pas" name="register-pas" type="password" placeholder="请输入密码" required="required">
-	    			<input id="regBut" class="register-but" type="submit" value="立即注册">
-	    		</form>
+	    			<input id="regBut" class="register-but" type="submit" value="立即注册" onclick="myRegister()"
+	    		</div>
 	    		
 	    	</div>
 	    </div>

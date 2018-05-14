@@ -44,7 +44,6 @@ public class FollowService extends BaseService {
                     responseBody.setCode(2001);
                 }
             }
-
         }
         else {
             responseBody.setCode(4002);

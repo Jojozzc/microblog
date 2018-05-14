@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <%--<%--%>
-      <%--session.setAttribute("user","dd");--%>
-    <%--%>--%>
+    <%
+      session.setAttribute("user","dd");
+    %>
     <title>欢迎来${user}微博</title>
   </head>
   <body>

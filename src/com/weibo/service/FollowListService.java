@@ -53,7 +53,5 @@ public class FollowListService extends BaseService {
         @SerializedName("message")
         private String message = "";
 
-
-
     }
 }

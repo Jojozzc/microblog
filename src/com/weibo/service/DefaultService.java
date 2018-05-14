@@ -9,6 +9,7 @@ public class DefaultService extends BaseService{
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
+        resp.sendRedirect("sina/index.html");
         System.out.println("默认服务");
     }
 
